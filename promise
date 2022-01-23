@@ -27,22 +27,67 @@ a
    console.log(x);
 });
 
-//3 (выводит только успешность, не пойму почему)
-let min=1, max=10;
+//3
 let a = new Promise((resolve, reject) => {
-  let randomNumber = Math.random(min,max);
+  let randomNumber = Math.random();
 setTimeout(() => {
-    if(randomNumber <= 5) {
+    if(randomNumber <= 0.5) {
       resolve();
-    } else if(randomNumber >= 6) {
+    } else if(randomNumber > 0.5) {
       reject();
   }
-  }, randomNumber*1000);
+  }, randomNumber*10000);
 });
 a
-.catch((error)=>{
-	console.log('unsuccessfully');
-})
 .then((result)=>{
    console.log('successfully');
 })
+.catch((error)=>{
+	console.log('unsuccessfully');
+})
+
+//4
+let a = new Promise((resolve, reject) => {
+  let randomNumber = Math.random();
+setTimeout(() => {
+    if(randomNumber <= 0.5) {
+      resolve();
+    } else {
+      reject();
+  }
+  }, 5000);
+});
+a
+.then((result)=>{
+   console.log('successfully');
+})
+.catch((error)=>{
+	console.log('unsuccessfully');
+})
+
+//5
+let min=1;
+let max=5.1;
+let a,b,c,sum=0;
+let x = new Promise((resolve, reject) => {
+  let randomNumber1 = Math.random() * (max - min) + min;
+setTimeout(() => {
+    resolve(a=12, sum+=a);
+  }, randomNumber1*1000);
+});
+let y = new Promise((resolve, reject) => {
+  let randomNumber2 = Math.random() * (max - min) + min;
+setTimeout(() => {
+    resolve(b=15, sum+=b);
+  }, randomNumber2*1000);
+});
+let z = new Promise((resolve, reject) => {
+  let randomNumber3 = Math.random() * (max - min) + min;
+setTimeout(() => {
+    resolve(c=103, sum+=c);
+  }, randomNumber3*1000);
+});
+
+Promise.all([x,y,z]).then(sum => {
+  console.log(sum);
+});
