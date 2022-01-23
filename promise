@@ -1,0 +1,30 @@
+//1
+let x=0;
+let a=new Promise(function(resolve,reject){
+   setTimeout(() => {
+      resolve(x=10);
+   }, 3000);
+   
+});
+
+a
+.then(function(){
+   console.log(x);
+});
+
+//2
+let x=0;
+let a=new Promise(function(resolve,reject){
+   setTimeout(() => {
+      resolve(x=10);
+      reject(x=1000);
+   }, 3000);
+   
+});
+
+a
+.then(function(){
+   console.log(x);
+});
+
+//3
