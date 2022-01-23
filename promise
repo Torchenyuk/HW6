@@ -27,4 +27,22 @@ a
    console.log(x);
 });
 
-//3
+//3 (выводит только успешность, не пойму почему)
+let min=1, max=10;
+let a = new Promise((resolve, reject) => {
+  let randomNumber = Math.random(min,max);
+setTimeout(() => {
+    if(randomNumber <= 5) {
+      resolve();
+    } else if(randomNumber >= 6) {
+      reject();
+  }
+  }, randomNumber*1000);
+});
+a
+.catch((error)=>{
+	console.log('unsuccessfully');
+})
+.then((result)=>{
+   console.log('successfully');
+})
