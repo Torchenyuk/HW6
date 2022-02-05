@@ -66,28 +66,31 @@ a
 })
 
 //5
-let min=1;
-let max=5.1;
-let a,b,c,sum=0;
-let x = new Promise((resolve, reject) => {
-  let randomNumber1 = Math.random() * (max - min) + min;
+function Random(){
+let min=Math.ceil(1000);
+let max=Math.ceil(5000);
+return Math.floor(Math.random() * (max - min)) + min;
+  }
+let p1 = new Promise((resolve, reject) => {
+const temp1=Random();
 setTimeout(() => {
-    resolve(a=12, sum+=a);
-  }, randomNumber1*1000);
+    resolve(temp1);
+  },temp1 );
 });
-let y = new Promise((resolve, reject) => {
-  let randomNumber2 = Math.random() * (max - min) + min;
+let p2 = new Promise((resolve, reject) => {
+const temp2=Random();
 setTimeout(() => {
-    resolve(b=15, sum+=b);
-  }, randomNumber2*1000);
+    resolve(temp2);
+  },temp2 );
 });
-let z = new Promise((resolve, reject) => {
-  let randomNumber3 = Math.random() * (max - min) + min;
+let p3 = new Promise((resolve, reject) => {
+const temp3=Random();
 setTimeout(() => {
-    resolve(c=103, sum+=c);
-  }, randomNumber3*1000);
+    resolve(temp3);
+  },temp3 );
 });
-
-Promise.all([x,y,z]).then(sum => {
+Promise.all([p1,p2,p3]).then(val => {
+//console.log("Array is: ", val);
+  const sum=val.reduce((sum1, item) => sum1+item,0 );
   console.log(sum);
 });
